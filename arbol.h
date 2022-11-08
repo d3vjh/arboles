@@ -2,6 +2,7 @@
 #define Arbol_h
 #include "Cola.h"
 #include "Estructura.h"
+#include "Pila.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -12,10 +13,10 @@ template <class T>
 class Arbol{
 		nodo<T> *raiz = new nodo<T>;
 			int tam;
+			Pila<T> pila;
 public:	Arbol( ){raiz=NULL;
 				 tam=0;
-				 queue<T> *inOrden = new queue<T>;	
-				 
+//				 queue<T> *inOrden = new queue<T>;	
 				}
 	nodo<T> *raiz_arbol( ); /**/
 	int ins_arbol (T ins); /**/
@@ -156,7 +157,10 @@ return 0;
 
 template <class T>
 void Arbol<T>::preorden(nodo<T> *p){
-cout<<"hola"<<endl;
+	nodo<T> *q;
+	q=p->der;
+	pila.meter(p);
+	
 }
 
 

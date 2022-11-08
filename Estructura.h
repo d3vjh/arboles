@@ -1,13 +1,18 @@
-#ifndef ESTRUCTURA1_H     
-#define ESTRUCTURA1_H 
+#ifndef ESTRUCTURA_H     
+#define ESTRUCTURA_H 
 
 template <class T>
-struct nodo{char dato;
+struct nodo{T dato;
        	int ID; 
-		int info;
+		T info;
         nodo<T> *izq, *der;
         nodo<T> *sig, *ant;
 
        };
        
+template <class T>
+struct nodoP{nodo<T> *dato;
+        nodoP<T> *sig;
+
+       };
 #endif
