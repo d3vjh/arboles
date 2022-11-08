@@ -1,24 +1,22 @@
 #ifndef QUEUE_H
 #define QUEUE_H
+#include "Estructura.h"
 
-template <class T>
-struct Nodoq{T info;
-	Nodoq<T> *sig;
-	Nodoq<T> *ant;
-};
 
 using namespace std;
 
 
 template <class T>
-class queue{Nodoq<T> *cab = new Nodoq<T>;
-			Nodoq<T> *fin = new Nodoq<T>;
+class queue{nodo<T> *cab ;
+			nodo<T> *fin ;
 			int tam;
       public: queue(){
+      	cab = new nodo<T>;
+      	fin = new nodo<T>;
 	  	tam =0;
 	  	cab=fin=NULL;}
-      void enqueue(T dato, char lado);
-      void dequeue(char lado);
+      void insertar(T dato, char lado);
+      void eliminar(char lado);
       void printQueue(char lado);
       bool isEmptyQueue();
       int getSize();
@@ -29,8 +27,8 @@ class queue{Nodoq<T> *cab = new Nodoq<T>;
 
 
 template <class T>
-void queue<T>::enqueue(T inf, char lado){
-	Nodoq<T> *nuevo = new Nodoq<T>;
+void queue<T>::insertar(T inf, char lado){
+	nodo<T> *nuevo = new nodo<T>;
 	nuevo->info = inf;
 	nuevo->ant = NULL;
 	nuevo->sig = NULL;
@@ -58,7 +56,7 @@ void queue<T>::enqueue(T inf, char lado){
 
 
 template <class T>
-void queue<T>::dequeue(char lado){
+void queue<T>::eliminar(char lado){
 	if(tam==1){
 		cab = NULL;
 		fin = NULL;
@@ -67,13 +65,13 @@ void queue<T>::dequeue(char lado){
 		cout<<"No hay elementos a sacar"<<endl;
 	}else if(lado == 'I'){
 		tam--;
-		Nodoq<T> *aux = new Nodoq<T>;
+		nodo<T> *aux = new nodo<T>;
 		aux = cab->sig;
 		cab = aux;
 		//Delete aux; y si se realiza tambien cuando vale la variable a borrar
 	}else if(lado == 'D'){
 		tam--;
-		Nodoq<T> *aux = new Nodoq<T>;
+		nodo<T> *aux = new nodo<T>;
 		aux = fin->ant;
 		fin = aux;
 		//Delete aux;
@@ -106,7 +104,7 @@ void queue<T>::printQueue(char lado){
 
 template <class T>
 T queue<T>::getDate(int pos, char lado){
-	Nodoq<T> *aux = new Nodoq<T>;
+	nodo<T> *aux = new nodo<T>;
 	
 	if(lado == 'I'){
 		aux = cab;
@@ -134,7 +132,7 @@ T queue<T>::getDate(int pos, char lado){
 		}
 		cout<<endl;
 	}else{
-		cout<<"Ingres? mal un dato, revise de nuevo";
+		cout<<"Ingresó mal un dato, revise de nuevo";
 		return NULL;
 	}
 }

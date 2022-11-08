@@ -1,12 +1,9 @@
 #include <iostream>
-#include "arbol.h"
+#include "Arbol.h"
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
 using namespace std;
-
 int main(int argc, char** argv) {
-	
-	Arbol<int> enteros;
+Arbol<int> enteros;
 	
 	
 	cout<<"Esta vacio?: "<<enteros.isEmptyTree()<<endl;
@@ -29,10 +26,9 @@ int main(int argc, char** argv) {
 	enteros.ins_arbol(10);
 	
 
-	
-	enteros.retira_arbol(3);
+	enteros.preorden(enteros.raiz_arbol());
+	enteros.retira_arbol(15);
 
 	enteros.preorden(enteros.raiz_arbol());
-
 	return 0;
 }

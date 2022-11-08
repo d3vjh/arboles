@@ -1,6 +1,6 @@
 [Project]
-FileName=arboles.dev
-Name=arboles
+FileName=Arbol_orden.dev
+Name=Arbol_orden
 Type=1
 Ver=2
 ObjFiles=
@@ -50,6 +50,16 @@ ProductVersion=
 AutoIncBuildNr=0
 SyncProduct=1
 
+[Unit2]
+FileName=Arbol.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit1]
 FileName=main.cpp
 CompileCpp=1
@@ -60,18 +70,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit2]
-FileName=arbol.h
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit3]
-FileName=pila.h
+FileName=Cola.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -81,7 +81,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=queue.h
+FileName=Estructura.h
 CompileCpp=1
 Folder=
 Compile=1

@@ -1,46 +1,37 @@
-#include <conio.h>
+#ifndef Arbol_h
+#define Arbol_h
+#include "Cola.h"
+#include "Estructura.h"
 #include <iostream>
-#include <stdlib.h>
-#include "pila.h"
-#include "queue.h"
-
-#ifndef ARBOL_H
-#define ARBOL_H
+#include <cstdlib>
 
 using namespace std;
 
 
-
 template <class T>
-struct Nodoa{
-			int ID; 
-			int info;
-        	Nodoa<T> *izq, *der;};
-
-template <class T>
-class Arbol{Nodoa<T> *raiz;
+class Arbol{
+		nodo<T> *raiz = new nodo<T>;
 			int tam;
-			pila<T> *preordenp = new pila<T>;
-			queue<T> *preordenq = new queue<T>;
 public:	Arbol( ){raiz=NULL;
 				 tam=0;
+				 queue<T> *inOrden = new queue<T>;	
+				 
 				}
-	Nodoa<T> *raiz_arbol( ); /*  */
-	int ins_arbol (T ins); /*  */
-	Nodoa<T> *buscar_arbol (int , Nodoa<T> *, Nodoa<T> *); /*  */
-	bool isEmptyTree(); /*   */
-	int getTam();/*   */
-	void preorden(Nodoa<T> *); 
-	void borrar_nodo(Nodoa<T> * , Nodoa<T> *, int);/**/
-	Nodoa<T> *buscar(int info, Nodoa<T> *, Nodoa<T> *);/**/
-	int retira_arbol(int info);/*  */
-	
+	nodo<T> *raiz_arbol( ); /**/
+	int ins_arbol (T ins); /**/
+	nodo<T> *buscar_arbol (int , nodo<T> *, nodo<T> *); /**/
+	bool isEmptyTree(); /**/
+	int getTam();/**/
+	void preorden(nodo<T> *); 
+	void borrar_nodo(nodo<T> * , nodo<T> *, int);/**/
+	nodo<T> *buscar(int info, nodo<T> *, nodo<T> *);/**/
+	int retira_arbol(int info);/**/
 };
 
 
 //Falta mejorar que No retorne nada al ser la Raiz
 template <class T> //Retorna el nodo padre de n
-Nodoa<T> *Arbol<T>::buscar(int n, Nodoa<T> *p, Nodoa<T> *q){
+nodo<T> *Arbol<T>::buscar(int n, nodo<T> *p, nodo<T> *q){
 	if (p==NULL) return NULL;
 
 	if (n < (p)->info){
@@ -53,21 +44,18 @@ Nodoa<T> *Arbol<T>::buscar(int n, Nodoa<T> *p, Nodoa<T> *q){
 		p=(p)->der;
 		q =buscar(n,p,q);
 		return q;}
-	else{
+		else{
 		
-		return q;
+		   	return q;
 		   } 
 		   
 }
 
 template <class T>
-void Arbol<T>::borrar_nodo(Nodoa<T> *q, Nodoa<T>*p, int n){
+void Arbol<T>::borrar_nodo(nodo<T> *q, nodo<T>*p, int n){
 //Tenemos el antecesor del que vamos a eliminar, debemos encontrar el menor de los mayores.
-Nodoa<T> *r, *s, *t;
-
-
+nodo<T> *r, *s, *t;
 //SI TIENE HIJOS POR LA DERECHA
-
 if(q==NULL){//Si es la raiz
 	q=p;
 	s=q->der;
@@ -83,8 +71,6 @@ if(q==NULL){//Si es la raiz
 	r->izq = q->izq;
 	raiz=r;
 	//Delete q
-	
-	
 	
 }else{
 
@@ -134,8 +120,6 @@ if(q==NULL){//Si es la raiz
 			if(q->izq->der == r){
 				q->izq = r;
 				s->izq=NULL;
-				delete s;
-				
 			}else{
 				r->der = q->izq->der;
 				q->izq = r;
@@ -162,8 +146,8 @@ cout<<"[!](Raiz)"<<p->info<<endl;
 
 template <class T>
 int Arbol<T>::retira_arbol(int n){
-Nodoa<T> *q, *p = raiz;
-q = buscar(n,p,NULL); //3 para ->1
+nodo<T> *q, *p = raiz;
+q=buscar(n,p,NULL); 
 if (p==NULL) return -1;
 borrar_nodo(q, p, n);
 return 0;
@@ -171,13 +155,8 @@ return 0;
 
 
 template <class T>
-void Arbol<T>::preorden(Nodoa<T> *p){ //RAIZ izq Der
-	Nodoa *q;
-	q=p->izq;	
-	preorden2.Push(p->der);
-	
-	
-	   
+void Arbol<T>::preorden(nodo<T> *p){
+cout<<"hola"<<endl;
 }
 
 
@@ -192,7 +171,7 @@ bool Arbol<T>::isEmptyTree(){
 }
 
 template <class T>
-Nodoa<T> *Arbol<T>::buscar_arbol(int ins, Nodoa<T> *p/*Raiz*/, Nodoa<T> *q/*NULL*/){
+nodo<T> *Arbol<T>::buscar_arbol(int ins, nodo<T> *p/*Raiz*/, nodo<T> *q/*NULL*/){
 	if (p==NULL) return q;
 	if (ins < p->info){
 	q=p; //Toma el valor de raiz como NODO
@@ -210,20 +189,20 @@ Nodoa<T> *Arbol<T>::buscar_arbol(int ins, Nodoa<T> *p/*Raiz*/, Nodoa<T> *q/*NULL
 
 template <class T>
 int Arbol<T>::ins_arbol(T ins){
-	Nodoa<T> *q;
+	nodo<T> *q;
 	if (raiz == NULL){
-		raiz= new Nodoa<T>;
+		raiz= new nodo<T>;
 		raiz->info = ins;
 		raiz->izq=raiz->der=NULL;
 		tam++;
 		return 0;}
 	
-	q = buscar_arbol(ins,raiz,NULL); // 7
+	q = buscar_arbol(ins,raiz,NULL);
 	if (q==NULL) return -1; //Cuando se repite
 	
 	//Se crea el nuevo nodo
-	Nodoa<T> *nuevo;
-	nuevo= new Nodoa<T>;
+	nodo<T> *nuevo;
+	nuevo= new nodo<T>;
 	nuevo->info = ins;
 	nuevo->izq=nuevo->der=NULL;
 	
@@ -243,7 +222,7 @@ return 0;
 
 
 template <class T>
-Nodoa<T> *Arbol<T>::raiz_arbol( ){
+nodo<T> *Arbol<T>::raiz_arbol( ){
 	//cout<<"[!] "<<raiz->info<<endl;
 	return raiz;
 }
