@@ -158,8 +158,19 @@ return 0;
 template <class T>
 void Arbol<T>::preorden(nodo<T> *p){
 	nodo<T> *q;
-	q=p->der;
-	pila.meter(p);
+	q=p;
+	while(q->der){
+	pila.meter(q->der);
+	cout<<q->izq->info<<endl;
+	q=q->izq;
+	if(q->der==NULL &&q->izq==NULL){
+		cout<<"ENTRO AL 1"<<endl;
+		q = pila.sacar();
+	}
+	if(q->izq==NULL){
+		q=q->der;
+	}
+	}
 	
 }
 

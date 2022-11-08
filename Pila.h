@@ -10,7 +10,7 @@ class Pila{
 		Pila();
 		~Pila();
 		void meter(nodo<T> *v);
-		T sacar();
+		nodo<T> *sacar();
 		int vacia();
 
 		
@@ -50,29 +50,25 @@ template <class T>
 
 void Pila<T>::meter(nodo<T> *v){
 	if(tam==0){
-		cout<<":C"<<endl;
 		cabeza2->sig = NULL;
 	}
 	nodoP<T> *t= new nodoP<T>;
-		cout<<"1"<<endl;
 	t->dato=v;
-	cout<<"holxx"<<(t->dato->info)<<endl;
-	
 	t->sig=cabeza2->sig;
-	cout<<"3"<<endl;
 	cabeza2->sig=t;
-	cout<<"con mi ultimo aliento maldigo los nodos"<<endl;
+	
 } 
 
 template <class T>
-
-T Pila<T>:: sacar(){
-	T x;
-	nodoA *t = cabeza->siguiente;
-	cabeza->siguiente = t->siguiente;
-	x=t->clave;
-	delete t;
-	return x;
+nodo<T> *Pila<T>:: sacar(){
+//	nodo<T> *x;
+//	nodoP<T> *t = new nodoP<T>;
+//	t = cabeza2->sig->dato;
+//	cabeza2->sig = t->sig;
+//	x=t->dato;
+//	cout<<t->dato<<"[!]";
+	
+	return cabeza2->sig->dato;
 }
 
 template <class T>
